@@ -1,49 +1,21 @@
 package com.example;
 
-import java.util.*;
+import java.sql.*;
 
 public class App {
+    public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) {
+        String userInput = "admin'; --"; // simulated input
 
-        // Hardcoded password (security issue)
-        String password = "12345";
+        // SQL Injection vulnerability
+        String query = "SELECT * FROM users WHERE username = '" + userInput + "'";
 
-        // Unused variable (code smell)
-        int unused = 10;
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "1234");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
 
-        // Duplicate code (maintainability issue)
-        System.out.println("Hello");
-        System.out.println("Hello");
-
-        // Null pointer risk
-        String name = null;
-        if (name.equals("test")) {   // will cause issue
-            System.out.println("Name is test");
+        while (rs.next()) {
+            System.out.println(rs.getString("username"));
         }
-
-        // Empty catch block (bad practice)
-        try {
-            int a = 10 / 0;
-        } catch (Exception e) {
-        }
-
-        // Long method + nested conditions (complexity issue)
-        for (int i = 0; i < 5; i++) {
-            if (i % 2 == 0) {
-                if (i > 1) {
-                    if (i < 4) {
-                        System.out.println("Complex logic");
-                    }
-                }
-            }
-        }
-
-        // Magic number (no constant)
-        int result = 100 * 3;
-        System.out.println(result);
-
-        // System.out instead of logger
-        System.out.println("Program End");
     }
 }
