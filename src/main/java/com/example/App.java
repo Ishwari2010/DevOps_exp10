@@ -1,14 +1,9 @@
-package com.example;
+package com.example; 
 
-public class App {
-    public static void main(String[] args) {
+/** 
 
-        // Hardcoded secret (security issue)
-        String password = "admin123";
+Hello world! 
 
-        // Null pointer (reliability issue)
-        String str = null;
-        System.out.println(str.length());  // will crash
+ 
 
-    }
-}
+*/ public class App { public static void main( String[] args ) { System.out.println( "Hello World!" ); } } 
